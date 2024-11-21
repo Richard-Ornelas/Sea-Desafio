@@ -13,16 +13,16 @@ beforeEach(() => {
         // Clicar no botão "Adicionar Funcionário" usando a classe
         cy.get('.c-kUQtTK').contains('+ Adicionar Funcionário').click();
   
-        // Seleciona o botão de estado (Inativo/Ativo) usando a tag e classe para maior especificidade
+        // Seleciona o botão de estado (Inativo/Ativo) usando a tag e classe
         cy.get('button.ant-switch').click(); // Alterna para o estado "Ativo"
 
-        // Seleciona o campo "Nome" usando o atributo name, que é mais direto e específico
+        // Seleciona o campo "Nome" usando o atributo name
         cy.get('input[name="name"]').type(nomeAleatorio);
 
-        // Seleciona o campo "CPF" usando o atributo name, pois é um campo específico de formulário
+        // Seleciona o campo "CPF" usando o atributo name
         cy.get('input[name="cpf"]').type('12345678901'); // CPF de exemplo
 
-        // Seleciona o campo "RG" usando o atributo name, pelo mesmo motivo dos campos anteriores
+        // Seleciona o campo "RG" usando o atributo name
         cy.get('input[name="rg"]').type('1234567'); // RG de exemplo
 
         // Seleciona o campo "Data de Nascimento" e insere uma data
@@ -41,10 +41,10 @@ beforeEach(() => {
         cy.get('.ant-select-item-option-content').contains('Óculos de proteção').click(); // Seleciona "Óculos de proteção"
 
         // Preenche o campo "Número do CA" com o valor 9722
-        cy.get('input[name="caNumber"]').type('9722');// Exemplo de data de nascimento
+        cy.get('input[name="caNumber"]').type('9722');
 
         // Upload do atestado médico
-        cy.get('#file').attachFile(filePath); // Seleciona o campo de upload pelo ID associado ao label
+        cy.get('#file').attachFile(filePath); // Seleciona o campo de upload pelo ID 
 
         // Clica no botão com a classe 'save'
         cy.get('button.save').click();  
@@ -52,10 +52,10 @@ beforeEach(() => {
 
         it('Deve Validar se o funcionário foi adicionado com sucesso', () => {
 
-        // Recarrega a página para garantir o DOM atualizad
+        // Recarrega a página para garantir o DOM atualiza
         cy.reload(); 
 
-        // Verifica se o contêiner contém o nome
+        // Verifica se o nome do funcionário está cadastrado na Lista
         cy.get('.c-bXqUbA').should('contain.text', nomeAleatorio)
         .then(() => {
           cy.log('Funcionário adicionado com sucesso'); // Adiciona mensagem no log

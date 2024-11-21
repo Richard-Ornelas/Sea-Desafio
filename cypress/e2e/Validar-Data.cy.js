@@ -11,7 +11,7 @@ describe('Validação da Data de Nascimento no Cadastro de Funcionário', () => 
     cy.get('.c-kUQtTK').contains('+ Adicionar Funcionário').click(); // Abre o formulário
   });
 
-  it.only('Deve aceitar uma data de nascimento válida', () => {
+  it('Deve exibir erro para uma data de nascimento com invalido', () => {
     // Preenche o nome e CPF com valores válidos
     cy.get('input[name="name"]').type(nomeAleatorio);
     cy.get('input[name="cpf"]').type('12345678909');
@@ -25,12 +25,9 @@ describe('Validação da Data de Nascimento no Cadastro de Funcionário', () => 
      cy.get('input.ant-checkbox-input').click();
 
      // Clica no botão salvar
-     cy.get('button.save').click();
-
-
-    // Mensagem exibida no final do fluxo
-     cy.log('O sistema não conseguiu validar os dados inválidos corretamente.');
-
+     cy.get('button.save').click().then(() => {;
+        cy.log('O sistema não conseguiu validar os dados inválidos corretamente.');// Mensagem exibida no final do fluxo
+     });
 
   });
 
@@ -48,11 +45,9 @@ describe('Validação da Data de Nascimento no Cadastro de Funcionário', () => 
     cy.get('input.ant-checkbox-input').click();
 
     // Clica no botão salvar
-    cy.get('button.save').click();
-
-
-    // Mensagem exibida no final do fluxo
-    cy.log('O sistema não conseguiu validar os dados inválidos corretamente.');
+    cy.get('button.save').click().then(() => {;
+        cy.log('O sistema não conseguiu validar os dados inválidos corretamente.');// Mensagem exibida no final do fluxo
+    });
   });
 
   it('Deve exibir erro para uma data de nascimento no futuro', () => {
@@ -69,9 +64,8 @@ describe('Validação da Data de Nascimento no Cadastro de Funcionário', () => 
     cy.get('input.ant-checkbox-input').click();
 
     // Clica no botão salvar
-    cy.get('button.save').click();
-
-    // Mensagem exibida no final do fluxo
-    cy.log('O sistema não conseguiu validar os dados inválidos corretamente.');
+    cy.get('button.save').click().then(() => {;
+        cy.log('O sistema não conseguiu validar os dados inválidos corretamente.');// Mensagem exibida no final do fluxo
+    });
   });
 });
